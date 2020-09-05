@@ -1,13 +1,20 @@
 package com.ipt.dissertacao.ms.saga.transferencia.saga.definition;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ipt.dissertacao.ms.saga.transferencia.repositorio.TransferenciaRepository;
+
 import io.eventuate.tram.commands.consumer.CommandWithDestination;
 import io.eventuate.tram.sagas.orchestration.SagaDefinition;
 import io.eventuate.tram.sagas.simpledsl.SimpleSaga;
 
-public class TransferenciaNaoPrioritariaSaga implements SimpleSaga<TransferenciaSagaData> {
+public class TransferenciaNaoPrioritariaSaga implements SimpleSaga<TransferenciaNaoPrioritariaSagaData> {
 
+	@Autowired
+	private TransferenciaRepository transfRepository;
+	
 	@Override
-	public SagaDefinition<TransferenciaSagaData> getSagaDefinition() {
+	public SagaDefinition<TransferenciaNaoPrioritariaSagaData> getSagaDefinition() {
 		return //definição da saga
 				step()
 					.invokeParticipant(this::validarCliente)
@@ -22,29 +29,27 @@ public class TransferenciaNaoPrioritariaSaga implements SimpleSaga<Transferencia
 				.build();
 	}
 	
-	private CommandWithDestination cancelarPagamento(TransferenciaSagaData data) {
-		return null;
-
-	}
-	
-	private CommandWithDestination validarCliente(TransferenciaSagaData data) {
-		return null;
-
-	}
-
-	private CommandWithDestination reservarConta(TransferenciaSagaData data) {
-		return null;
-	}
-
-	private CommandWithDestination devolverSaldo(TransferenciaSagaData data) {
-		return null;
-	}
-
-	private CommandWithDestination registrarPagamento(TransferenciaSagaData data) {
+	private CommandWithDestination cancelarPagamento(TransferenciaNaoPrioritariaSagaData data) {
 		return null;
 	}
 	
-	private CommandWithDestination confirmarPagamento(TransferenciaSagaData data) {
+	private CommandWithDestination validarCliente(TransferenciaNaoPrioritariaSagaData data) {
+		return null;
+	}
+
+	private CommandWithDestination reservarConta(TransferenciaNaoPrioritariaSagaData data) {
+		return null;
+	}
+
+	private CommandWithDestination devolverSaldo(TransferenciaNaoPrioritariaSagaData data) {
+		return null;
+	}
+
+	private CommandWithDestination registrarPagamento(TransferenciaNaoPrioritariaSagaData data) {
+		return null;
+	}
+	
+	private CommandWithDestination confirmarPagamento(TransferenciaNaoPrioritariaSagaData data) {
 		return null;
 
 	}

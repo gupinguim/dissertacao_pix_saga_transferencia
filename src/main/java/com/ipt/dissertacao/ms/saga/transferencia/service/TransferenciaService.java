@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class TransferenciaService {
 
 	@Autowired
-	private SagaManager<TransferenciaSagaData> transferenciaSagaManager;
+	private SagaManager<TransferenciaNaoPrioritariaSagaData> transferenciaNaoPrioritariaSagaManager;
 
 	@Autowired
 	private TransferenciaRepository transferenciaRepository;
@@ -23,8 +23,18 @@ public class TransferenciaService {
 	public Transferencia efetuarTransferenciaNaoPrioritaria(Transferencia data) {
 		Transferencia transf = transferenciaRepository.save(data);
 
-		TransferenciaSagaData transferenciaSagaData = new TransferenciaSagaData();
-		transferenciaSagaManager.create(transferenciaSagaData);
+		TransferenciaNaoPrioritariaSagaData transferenciaSagaData = new TransferenciaNaoPrioritariaSagaData();
+		transferenciaNaoPrioritariaSagaManager.create(transferenciaSagaData);
+
+		return transf;
+	}
+	
+	@Transactional
+	public Transferencia efetuarTransferenciaPrioritaria(Transferencia data) {
+		Transferencia transf = transferenciaRepository.save(data);
+
+		TransferenciaNaoPrioritariaSagaData transferenciaSagaData = new TransferenciaNaoPrioritariaSagaData();
+		transferenciaNaoPrioritariaSagaManager.create(transferenciaSagaData);
 
 		return transf;
 	}
